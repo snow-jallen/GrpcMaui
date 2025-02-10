@@ -1,32 +1,38 @@
-var builder = WebApplication.CreateBuilder(args);
+using GrpcShared;
+using ProtoBuf.Grpc.Server;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCodeFirstGrpc();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//client endpoint
+app.MapGrpcService<ScheduleOMaticService>();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+//server endpoint
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+public class ScheduleOMaticService : IScheduleOMaticService
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public Task<ModifyScheduleResponse> ModifySchedule(ModifyScheduleRequest request)
+    {
+        return Task.FromResult(new ModifyScheduleResponse
+        {
+            IsSuccess = true,
+            Message = "Band rescheduled",
+            UpdatedBookingId = request.BookingId + "NEW"
+        });
+    }
+
+    public Task<ScheduleResponse> Schedule(ScheduleRequest request)
+    {
+        return Task.FromResult(new ScheduleResponse
+        {
+            BookingId = Guid.NewGuid().ToString(),
+            IsSuccess = true,
+            Message = "Band scheduled"
+        });
+    }
 }

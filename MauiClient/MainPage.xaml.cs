@@ -1,25 +1,47 @@
-﻿namespace MauiClient
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Grpc.Net.Client;
+using GrpcShared;
+using ProtoBuf.Grpc.Client;
+
+namespace MauiClient;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage(MainPageViewModel vm)
     {
-        int count = 0;
+        InitializeComponent();
+        BindingContext = vm;
+    }
+}
 
-        public MainPage()
+public partial class MainPageViewModel(ScheduleOMaticClient client) : ObservableObject
+{
+    [ObservableProperty]
+    private ScheduleResponse response;
+
+    [RelayCommand]
+    private async Task Schedule()
+    {
+        Response = await client.Client.Schedule(new ScheduleRequest
         {
-            InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+            BandName = "The Beatles",
+            PerformanceDate = DateTime.UtcNow,
+            Venue = "The Cavern Club"
+        });
     }
 
+    [ObservableProperty]
+    private ModifyScheduleResponse modifyResponse;
+
+    [RelayCommand]
+    private async Task ModifySchedule()
+    {
+        ModifyResponse = await client.Client.ModifySchedule(new ModifyScheduleRequest
+        {
+            BookingId = response.BookingId,
+            NewPerformanceDate = DateTime.UtcNow.AddDays(7),
+            NewVenue = "Shea Stadium"
+        });
+    }
 }
