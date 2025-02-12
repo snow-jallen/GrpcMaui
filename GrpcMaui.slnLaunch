@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Everything All Of It",
+    "Projects": [
+      {
+        "Path": "MauiClient\\MauiClient.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GrpcApi\\GrpcApi.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
