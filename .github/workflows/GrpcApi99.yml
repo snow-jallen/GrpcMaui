@@ -1,10 +1,10 @@
-name: Build and deploy .NET Core application to Web App GrpcApi88
+name: Build and deploy .NET Core application to Web App GrpcApi99
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: GrpcApi88
+  AZURE_WEBAPP_NAME: GrpcApi99
   AZURE_WEBAPP_PACKAGE_PATH: GrpcApi/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 9.0.x
@@ -43,7 +43,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v2
       with:
-        creds: ${{ secrets.GrpcApi88_SPN }}
+        creds: ${{ secrets.GrpcApi99_SPN }}
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
