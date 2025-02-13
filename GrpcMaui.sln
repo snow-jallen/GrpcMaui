@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiClient", "MauiClient\MauiClient.csproj", "{6F0A7256-B37B-4B7D-90D9-56ABA7B61B62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcShared", "GrpcShared\GrpcShared.csproj", "{D6BCE324-1616-488A-8E3E-88CDD9D14636}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcApi", "GrpcApi\GrpcApi.csproj", "{8CC035D9-A8B8-4027-BF75-08DE77D91335}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07920C9C-A39A-456B-B81B-3DA097F62BA6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\master_grpcmauiapi.yml = .github\workflows\master_grpcmauiapi.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
