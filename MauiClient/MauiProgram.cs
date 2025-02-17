@@ -36,7 +36,8 @@ namespace MauiClient
 public class ScheduleOMaticClient : IDisposable
 {
 #if DEBUG
-    private const string GrpcApiAddress = "http://localhost:5000";
+    //private const string GrpcApiAddress = "http://localhost:8585";
+    private const string GrpcApiAddress = "https://grpcmauiapi.azurewebsites.net:8585";
 #else
     private const string GrpcApiAddress = "http://localhost:5000";
 #endif
@@ -48,11 +49,11 @@ public class ScheduleOMaticClient : IDisposable
     {
         GrpcClientFactory.AllowUnencryptedHttp2 = true;
         channel = GrpcChannel.ForAddress(GrpcApiAddress);
-        Client = channel.CreateGrpcService<IScheduleOMaticService>();        
+        Client = channel.CreateGrpcService<IScheduleOMaticService>();
     }
 
     public void Dispose()
-    {        
+    {
         channel.Dispose();
     }
 }
