@@ -4,19 +4,19 @@ name: Trigger auto deployment for grpccontainer
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
+    branches:
       [ master ]
     paths:
     - '**'
     - '.github/workflows/grpccontainer-AutoDeployTrigger-52f7837c-6e0d-4b7f-b9a0-b73ae88b0aa2.yml'
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -35,8 +35,8 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}
-          _dockerfilePathKey_: _dockerfilePath_
-          registryUrl: 
+          _dockerfilePathKey_: ./GrpcApi/Dockerfile
+          registryUrl:
           registryUsername: ${{ secrets.GRPCCONTAINER_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.GRPCCONTAINER_REGISTRY_PASSWORD }}
           containerAppName: grpccontainer

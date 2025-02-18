@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcApi", "GrpcApi\GrpcApi.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07920C9C-A39A-456B-B81B-3DA097F62BA6}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\grpccontainer-AutoDeployTrigger-52f7837c-6e0d-4b7f-b9a0-b73ae88b0aa2.yml = .github\workflows\grpccontainer-AutoDeployTrigger-52f7837c-6e0d-4b7f-b9a0-b73ae88b0aa2.yml
+		.github\workflows\master_grpccontainer.yml = .github\workflows\master_grpccontainer.yml
 		.github\workflows\master_grpcmauiapi.yml = .github\workflows\master_grpcmauiapi.yml
 	EndProjectSection
 EndProject
@@ -35,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8B6FA82-106F-4B90-96CC-14451919E749}
 	EndGlobalSection
 EndGlobal
